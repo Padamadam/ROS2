@@ -1,0 +1,18 @@
+{
+    "python.autoComplete.extraPaths": [
+        "/home/krystian/anro_ws/install/lab6/lib/python3.10/site-packages",
+        "/home/krystian/anro_ws/install/lab4/lib/python3.10/site-packages",
+        "/home/krystian/anro_ws/install/lab3/lib/python3.10/site-packages",
+        "/home/krystian/anro_ws/install/lab2/lib/python3.10/site-packages",
+        "/opt/ros/humble/lib/python3.10/site-packages",
+        "/opt/ros/humble/local/lib/python3.10/dist-packages"
+    ],
+    "python.analysis.extraPaths": [
+        "/home/krystian/anro_ws/install/lab6/lib/python3.10/site-packages",
+        "/home/krystian/anro_ws/install/lab4/lib/python3.10/site-packages",
+        "/home/krystian/anro_ws/install/lab3/lib/python3.10/site-packages",
+        "/home/krystian/anro_ws/install/lab2/lib/python3.10/site-packages",
+        "/opt/ros/humble/lib/python3.10/site-packages",
+        "/opt/ros/humble/local/lib/python3.10/dist-packages"
+    ]
+}

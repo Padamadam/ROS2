@@ -1,0 +1,36 @@
+{
+    "python.autoComplete.extraPaths": [
+        "/home/petro/ros2222/install/lab6/lib/python3.10/site-packages",
+        "/home/petro/ros333/install/pd_lab6/lib/python3.10/site-packages",
+        "/home/petro/ros333/install/pd_lab5/lib/python3.10/site-packages",
+        "/home/petro/ros333/install/pd_lab4/lib/python3.10/site-packages",
+        "/home/petro/ros333/install/pd_lab3/lib/python3.10/site-packages",
+        "/home/petro/ros333/install/my_py_pkg/lib/python3.10/site-packages",
+        "/home/petro/ros333/install/lab6/lib/python3.10/site-packages",
+        "/home/petro/ros333/install/lab5/lib/python3.10/site-packages",
+        "/home/petro/ros333/install/lab4/lib/python3.10/site-packages",
+        "/home/petro/ros333/install/lab3/lib/python3.10/site-packages",
+        "/home/petro/ros333/install/lab2/lib/python3.10/site-packages",
+        "/home/petro/ros333/install/anro_pd2/lib/python3.10/site-packages",
+        "/home/petro/ros333/install/URDF_test/lib/python3.10/site-packages",
+        "/opt/ros/humble/lib/python3.10/site-packages",
+        "/opt/ros/humble/local/lib/python3.10/dist-packages"
+    ],
+    "python.analysis.extraPaths": [
+        "/home/petro/ros2222/install/lab6/lib/python3.10/site-packages",
+        "/home/petro/ros333/install/pd_lab6/lib/python3.10/site-packages",
+        "/home/petro/ros333/install/pd_lab5/lib/python3.10/site-packages",
+        "/home/petro/ros333/install/pd_lab4/lib/python3.10/site-packages",
+        "/home/petro/ros333/install/pd_lab3/lib/python3.10/site-packages",
+        "/home/petro/ros333/install/my_py_pkg/lib/python3.10/site-packages",
+        "/home/petro/ros333/install/lab6/lib/python3.10/site-packages",
+        "/home/petro/ros333/install/lab5/lib/python3.10/site-packages",
+        "/home/petro/ros333/install/lab4/lib/python3.10/site-packages",
+        "/home/petro/ros333/install/lab3/lib/python3.10/site-packages",
+        "/home/petro/ros333/install/lab2/lib/python3.10/site-packages",
+        "/home/petro/ros333/install/anro_pd2/lib/python3.10/site-packages",
+        "/home/petro/ros333/install/URDF_test/lib/python3.10/site-packages",
+        "/opt/ros/humble/lib/python3.10/site-packages",
+        "/opt/ros/humble/local/lib/python3.10/dist-packages"
+    ]
+}

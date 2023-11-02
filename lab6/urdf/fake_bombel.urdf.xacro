@@ -1,0 +1,189 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="robotic_arm">
+<xacro:property name="yaml_file" value="$(find lab6)/urdf/fake_bombel.yaml" />
+<xacro:property name="fake_bombel" value="${xacro.load_yaml(yaml_file)}"/>
+<xacro:property name="base_width" value="${fake_bombel['base_width']}" />
+<xacro:property name="base_height" value="${fake_bombel['base_height']}" />
+<xacro:property name="bar1_lenght" value="${fake_bombel['bar1_lenght']}" />
+<xacro:property name="bar1_height" value="${fake_bombel['bar1_height']}" />
+<xacro:property name="bar2_lenght" value="${fake_bombel['bar2_lenght']}" />
+<xacro:property name="bar2_radius" value="${fake_bombel['bar2_radius']}" />
+<xacro:property name="bar3_lenght" value="${fake_bombel['bar3_lenght']}" />
+<xacro:property name="bar3_radius" value="${fake_bombel['bar3_radius']}" />
+<xacro:property name="bar4_lenght" value="${fake_bombel['bar4_lenght']}" />
+<xacro:property name="bar4_radius" value="${fake_bombel['bar4_radius']}" />
+<xacro:property name="gripper_lenght" value="${fake_bombel['gripper_lenght']}"/>
+<xacro:property name="gripper_width" value="${fake_bombel['gripper_width']}"/>
+<xacro:property name="gripper_height" value="${fake_bombel['gripper_height']}"/>
+  
+
+  <material name="blue">
+      <color rgba="0 0 0.8 1"/>
+    </material>
+    <material name="black">
+      <color rgba="0 0 0 1"/>
+    </material>
+    <material name="white">
+      <color rgba="1 1 1 1"/>
+    </material>
+    <material name="gray">
+      <color rgba="0.5 0.5 0.5 1"/>
+    </material>
+  <material name="orange">
+      <color rgba="1 0.6 0 1"/>
+    </material>
+
+
+  <link name="base">
+      <visual>
+        <geometry>
+            <box size="${base_width} ${base_width} ${base_height}"/>
+        </geometry>
+        <origin xyz = " 0 0 0.0 " rpy = " 0 0 0"/>
+      <material name="white"/>
+    </visual>
+  </link>
+
+  <link name="label_front">
+    <visual>
+      <geometry>
+        <box size="${gripper_width/2} ${gripper_lenght/2} ${gripper_height/2}"/>
+      </geometry>
+      <origin xyz = "0 0 0" rpy = " 0 0 0"/>
+      <material name="white"/>
+    </visual>
+  </link>
+
+  <joint name="joint_label_front_to_bar1" type="fixed">
+    <axis xyz="0 0 1"/>
+    <parent link="base"/>
+    <child link="label_front"/>
+    <origin xyz= "${base_width/2} 0 ${0.65*base_height}"/>  
+  </joint>
+
+  <link name="bar1">
+    <visual>
+      <geometry>
+        <cylinder radius ="${bar1_lenght/2}" length = "${bar1_height}"/>
+      </geometry>
+      <origin xyz = "0 0 ${bar1_height/2}" rpy = " 0 0 0"/>
+      <material name="white"/>
+    </visual>
+  </link>
+
+  <joint name="joint_bar1_to_base" type="revolute">
+    <axis xyz="0 0 1"/>
+    <limit effort = "1000.0" lower = "-1.57" upper = "1.57" velocity = "0"/>
+    <parent link="base"/>
+    <child link="bar1"/>
+    <origin xyz= "0 0 ${base_height/2}"/>  
+  </joint>
+
+  <link name="bar2">
+    <visual>
+      <geometry>
+        <box size= "${bar2_radius*2} ${bar2_radius*2} ${bar2_lenght}"/>
+      </geometry>
+      <origin xyz = "0 0 ${bar2_lenght/2}" rpy = " 0 0 0"/>
+      <material name="white"/>
+    </visual>
+  </link>
+
+  <joint name="joint_bar2_to_bar1" type="revolute">
+    <axis xyz="0 1 0"/>
+    <limit effort = "1000.0" lower = "0" upper = "1.48" velocity = "0"/>
+    <parent link="bar1"/>
+    <child link="bar2"/>
+    <origin xyz= "0 0 ${bar1_height}" rpy = " 0 0 0 "/>  
+  </joint>
+
+  <link name="bar3">
+    <visual>
+      <geometry>
+        <box size= "${bar3_radius*2} ${bar3_radius*2} ${bar3_lenght}"/>
+      </geometry>
+      <origin xyz = "0 0 ${bar3_lenght/2}" rpy = "0 0 0"/>
+      <material name="white"/>
+    </visual>
+  </link>
+
+  <joint name="joint_bar3_to_bar2" type="revolute">
+    <axis xyz="0 1 0"/>
+    <limit effort = "1000.0" lower = "-0.17" upper = "1.57" velocity = "0"/>
+    <parent link="bar2"/>
+    <child link="bar3"/>
+    <origin xyz= "0 0 ${bar2_lenght}" rpy = " 0 1.5708 0 "/>  
+  </joint>
+
+ 
+
+  <link name="bar4">
+    <visual>
+      <geometry>
+        <box size= "${bar4_radius*2} ${bar4_radius*2} ${bar4_lenght}"/>
+      </geometry>
+      <origin xyz = "0 0 ${bar4_lenght/2}" rpy = " 0 0 0"/>
+      <material name="black"/>
+    </visual>
+  </link>
+
+  <link name="camera_link">
+    <visual>
+      <geometry>
+        <box size="0.025 0.025 0.09"/>
+      </geometry>
+      <origin xyz = "0 0 0" rpy = " 0 0 0"/>
+      <material name="orange"/>
+    </visual>
+  </link>
+
+  <joint name="joint_camera_to_bar4" type="fixed">
+    <parent link="bar4"/>
+    <child link="camera_link"/>
+    <origin xyz= "0 0 ${1.75*bar4_lenght}" rpy = " 1.5708 0 0 "/>  
+  </joint>
+
+  <joint name="joint_bar4_to_bar3" type="revolute">
+    <axis xyz="0 1 0"/>
+    <limit effort = "1000.0" lower="-1.57" upper="1.57" velocity="0"/>
+    <parent link="bar3"/>
+    <child link="bar4"/>
+    <origin xyz= "0 0 ${bar3_lenght}" rpy = " 0 0 0 "/>  
+  </joint>
+
+  <link name="gripper">
+    <visual>
+      <geometry>
+        <box size="${gripper_width} ${gripper_lenght} 0.1"/>
+      </geometry>
+      <origin xyz = "0 0 0" rpy = " 0 3.1416 0"/>
+      <material name="white"/>
+    </visual>
+  </link>
+
+  <joint name="joint_gripper_to_bar4" type="revolute">
+    <axis xyz="0 0 1"/>
+    <limit effort = "1000.0" lower = "-1.57" upper = "1.57" velocity = "0"/>
+    <parent link="bar4"/>
+    <child link="gripper"/>
+    <origin xyz= "0.05 0 ${bar4_lenght}" rpy = " 0 1.5707963 0 "/>  
+  </joint>
+
+  <link name="pneumatic_actuator">
+    <visual>
+      <geometry>
+        <box size="${gripper_width/2} ${gripper_lenght/2} ${gripper_height/2}"/>
+      </geometry>
+      <origin xyz = "0 ${gripper_lenght*0.75} 0" rpy = " 0 0 0"/>
+      <material name="gray"/>
+    </visual>
+  </link>
+
+  <joint name="joint_pneumatic_actuator_to_gripper" type="fixed">
+    <axis xyz="0 0 1"/>
+    <parent link="gripper"/>
+    <child link="pneumatic_actuator"/>
+    <origin xyz= "0 0 0 " rpy = " 0 0 0 "/>  
+  </joint>
+
+</robot>

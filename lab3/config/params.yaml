@@ -1,0 +1,36 @@
+base_width: 0.158
+base_length: 0.20
+base_height: 0.038
+
+shoulder_height: 0.1
+shoulder_radius: 0.029
+
+wheel_radius: 0.04
+wheel_length: 0.04
+
+elbow_width: 0.034
+elbow_length: 0.023
+elbow_height: 0.135
+
+forearm_width: 0.03675
+forearm_length: 0.0245
+forearm_height: 0.147
+
+hand_width: 0.01
+hand_length: 0.08
+hand_height: 0.08
+
+device_width: 0.01
+device_length: 0.02
+device_height: 0.1
+
+tool_wid: 0.06
+tool_len: 0.08
+tool_hei: 0.12
+
+camera_wid: 0.09
+camera_len: 0.025
+camera_hei: 0.025
+
+
+PI: 3.1415926

@@ -1,0 +1,284 @@
+<?xml version="1.0"?>
+<robot name="dobot_magician" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+<xacro:arg name="params_path" default=""/>
+<xacro:property name="params_path" value="$(arg params_path)"/>
+<xacro:property name="mp" value="${xacro.load_yaml(params_path)}"/>
+
+<xacro:property name="base_width" value="${mp['base_width']}"/>
+<xacro:property name="base_length" value="${mp['base_length']}"/>
+<xacro:property name="base_height" value="${mp['base_height']}"/>
+
+<xacro:property name="elbow_width" value="${mp['elbow_width']}"/>
+<xacro:property name="elbow_length" value="${mp['elbow_length']}"/>
+<xacro:property name="elbow_height" value="${mp['elbow_height']}"/>
+
+<xacro:property name="forearm_width" value="${mp['forearm_width']}"/>
+<xacro:property name="forearm_length" value="${mp['forearm_length']}"/>
+<xacro:property name="forearm_height" value="${mp['forearm_height']}"/>
+
+<xacro:property name="hand_width" value="${mp['hand_width']}"/>
+<xacro:property name="hand_length" value="${mp['hand_length']}"/>
+<xacro:property name="hand_height" value="${mp['hand_height']}"/>
+
+<xacro:property name="device_width" value="${mp['device_width']}"/>
+<xacro:property name="device_length" value="${mp['device_length']}"/>
+<xacro:property name="device_height" value="${mp['device_height']}"/>
+
+<xacro:property name="PI" value="${mp['PI']}"/>
+
+<xacro:property name="shoulder_height" value="${mp['shoulder_height']}"/>
+<xacro:property name="shoulder_radius" value="${mp['shoulder_radius']}"/>
+
+<xacro:property name="wheel_radius" value="${mp['wheel_radius']}"/>
+<xacro:property name="wheel_length" value="${mp['wheel_length']}"/>
+
+<xacro:property name="hand_length" value="${mp['hand_length']}"/>
+<xacro:property name="hand_height" value="${mp['hand_height']}"/>
+<xacro:property name="hand_width" value="${mp['hand_width']}"/>
+
+<xacro:property name="tool_wid" value="${mp['tool_wid']}"/>
+<xacro:property name="tool_len" value="${mp['tool_len']}"/>
+<xacro:property name="tool_hei" value="${mp['tool_hei']}"/>
+
+<xacro:property name="camera_wid" value="${mp['camera_wid']}"/>
+<xacro:property name="camera_len" value="${mp['camera_len']}"/>
+<xacro:property name="camera_hei" value="${mp['camera_hei']}"/>
+
+
+  <material name="blue">
+      <color rgba="0 0 0.8 1"/>
+    </material>
+    <material name="black">
+      <color rgba="0 0 0 1"/>
+    </material>
+    <material name="white">
+      <color rgba="1 1 1 1"/>
+    </material>
+    <material name="gray">
+      <color rgba="0.5 0.5 0.5 1"/>
+    </material>
+
+  <material name="orange">
+      <color rgba="1 0.6 0 1"/>
+    </material>
+
+  <link name="base_link">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <box size="${base_width} ${base_length} ${base_height}"/>
+      </geometry>
+      <material name="white"/>
+    </visual>
+  </link>
+
+  <joint name="front_joint" type="fixed">
+    <parent link="base_link"/>
+    <child link="front_link"/>
+    <origin xyz="${base_width/2+0.01} 0 0" rpy="0 0 0"/>
+  </joint>
+
+
+  <link name="front_link">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <box size="0.01 0.01 ${base_height/2}"/>
+      </geometry>
+      <material name="white"/>
+    </visual>
+  </link>
+
+
+  <joint name="shoulder_joint" type="revolute">
+    <limit effort="1000.0" lower="0.0" upper="3.141" velocity="0.5"/>
+    <parent link="base_link"/>
+    <child link="shoulder_link"/>
+    <origin xyz="0 0 ${shoulder_height/2+base_height/2}" rpy="0 0 0"/>
+    <axis xyz="0 0 1"/>
+  </joint>
+
+
+  <link name="shoulder_link">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <cylinder length = "${shoulder_height}" radius = "${shoulder_radius}"/>
+      </geometry>
+      <material name="white"/>
+    </visual>
+  </link>
+
+
+  <joint name="elbow_wheel_joint" type="revolute">
+    <limit effort="1000.0" lower="0.0" upper="1.48" velocity="0.5"/>
+    <parent link="shoulder_link"/>
+    <child link="elbow_wheel"/>
+    <origin xyz="0 0 ${shoulder_height/2}" rpy="0 0 0"/>
+    <axis xyz="0 1 0"/>
+  </joint>
+
+
+  <link name="elbow_wheel">
+    <visual>
+      <origin xyz="0 0 0" rpy="1.57 0 0" />
+      <geometry>
+        <cylinder length = "${wheel_length}" radius = "${wheel_radius}"/>
+      </geometry>
+      <material name="black"/>
+    </visual>
+  </link>
+
+
+  <joint name="elbow_joint" type="fixed">
+    <parent link="elbow_wheel"/>
+    <child link="elbow_link"/>
+    <origin xyz="0 0 ${elbow_height/2}" rpy="0 0 0"/>
+    <axis xyz="0 1 0"/>
+  </joint>
+
+
+  <link name="elbow_link">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <box size="${elbow_width} ${elbow_length} ${elbow_height}"/>
+      </geometry>
+      <material name="white"/>
+    </visual>
+  </link>
+
+
+  <joint name="forearm_wheel_joint" type="revolute">
+    <limit effort="1000.0" lower="0.0" upper="1.57" velocity="0.5"/>
+    <parent link="elbow_link"/>
+    <child link="forearm_wheel"/>
+    <origin xyz="0 0 ${elbow_height/2}" rpy="0 0 0"/>
+    <axis xyz="0 1 0"/>
+  </joint>
+
+
+  <link name="forearm_wheel">
+    <visual>
+      <origin xyz="0 0 0" rpy="1.57 0 0" />
+      <geometry>
+        <cylinder length = "${wheel_length}" radius = "${wheel_radius}"/>
+      </geometry>
+      <material name="black"/>
+    </visual>
+  </link>
+
+
+  <joint name="forearm_joint" type="fixed">
+    <parent link="forearm_wheel"/>
+    <child link="forearm_link"/>
+    <origin xyz="0 0 ${forearm_height/2}" rpy="0 0 0"/>
+    <axis xyz="0 1 0"/>
+  </joint>
+
+
+  <link name="forearm_link">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <box size="${forearm_width} ${forearm_length} ${forearm_height}"/>
+      </geometry>
+      <material name="white"/>
+    </visual>
+  </link> 
+
+
+  <joint name="hand_joint" type="revolute">
+    <limit effort="1000.0" lower="0.0" upper="3.14" velocity="0.5"/>
+    <parent link="forearm_link"/>
+    <child link="hand_link"/>
+    <origin xyz="0 0 ${forearm_height/2+hand_width/2}" rpy="0 0 0"/>
+    <axis xyz="0 1 0"/>
+  </joint>
+
+
+  <link name="hand_link">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 ${PI/2} 0" />
+      <geometry>
+        <box size="${hand_width} ${hand_length} ${hand_height}"/>
+      </geometry>
+      <material name="black"/>
+    </visual>
+  </link>
+
+
+  <joint name="device_joint" type="revolute">
+    <limit effort="1000.0" lower="0.0" upper="6.28" velocity="0.5"/>
+    <parent link="hand_link"/>
+    <child link="device_link"/>
+    <origin xyz="0 0 ${device_height+hand_width/2}" rpy="0 0 0"/>
+    <axis xyz="0 0 1"/>
+  </joint>
+
+
+  <link name="device_link">
+    <visual>
+      <origin xyz="0 0 ${-device_height/2}" rpy="0 0 0" />
+      <geometry>
+        <box size="${device_width} ${device_length} ${device_height}"/>
+      </geometry>
+      <material name="white"/>
+    </visual>
+  </link>
+  
+  <joint name="pneumatic_joint" type="fixed">
+    <parent link="device_link"/>
+    <child link="pneumatic_link"/>
+    <origin xyz="0.0115 0.05 ${-device_height/2 + 0.02}" rpy="0 0 0"/>
+  </joint>
+
+
+  <link name="pneumatic_link">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <box size="0.01 0.1 0.01"/>
+      </geometry>
+      <material name="white"/>
+    </visual>
+  </link>
+
+
+  <link name="rod">
+    <visual>
+      <geometry>
+        <box size="0.05 0.01 0.01"/>
+      </geometry>
+      <origin rpy="0 0 0 " xyz ="0 0 0"/>
+      <material name="orange"/>
+    </visual>
+  </link>
+
+  <joint name="hand_link_rod_joint" type="fixed">
+    <parent link="hand_link"/>
+    <child link="rod"/>
+    <origin xyz="-0.025 0 0"/>
+  </joint>
+
+  <joint name="rod_camera_joint" type="fixed">
+    <parent link="rod"/>
+    <child link="camera_link"/>
+    <origin xyz="-0.025 0 0"/>
+  </joint>
+  
+  <link name="camera_link">
+    <visual>
+      <geometry>
+        <box size="${camera_len} ${camera_wid} ${camera_hei}"/>
+      </geometry>
+      <origin rpy="0 0 0" xyz ="0 0 0"/>
+      <material name="orange"/>
+    </visual>
+  </link>
+
+
+
+
+</robot>

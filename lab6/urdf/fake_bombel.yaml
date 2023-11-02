@@ -1,0 +1,18 @@
+base_width: 0.158
+base_height: 0.0552
+
+bar1_lenght: 0.1
+bar1_height: 0.0828
+
+bar2_lenght: 0.135
+bar2_radius: 0.017
+
+bar3_lenght: 0.147
+bar3_radius: 0.017
+
+bar4_lenght: 0.041
+bar4_radius: 0.01
+
+gripper_lenght: 0.025
+gripper_width: 0.025
+gripper_height: 0.09

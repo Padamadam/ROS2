@@ -1,0 +1,41 @@
+{
+    "ros.distro": "humble",
+    "python.autoComplete.extraPaths": [
+        "/home/student/anro/install/pick/lib/python3.10/site-packages",
+        "/home/student/anro/install/lab3/lib/python3.10/site-packages",
+        "/home/student/anro/install/lab2/lib/python3.10/site-packages",
+        "/opt/anro_camera_ws/install/ros2_aruco_interfaces/local/lib/python3.10/dist-packages",
+        "/opt/anro_camera_ws/install/ros2_aruco/lib/python3.10/site-packages",
+        "/opt/anro_camera_ws/install/realsense2_camera_msgs/local/lib/python3.10/dist-packages",
+        "/opt/dobot_anro_system/install/dobot_state_updater/lib/python3.10/site-packages",
+        "/opt/dobot_anro_system/install/dobot_motion/lib/python3.10/site-packages",
+        "/opt/dobot_anro_system/install/dobot_homing/lib/python3.10/site-packages",
+        "/opt/dobot_anro_system/install/dobot_end_effector/lib/python3.10/site-packages",
+        "/opt/dobot_anro_system/install/dobot_diagnostics/lib/python3.10/site-packages",
+        "/opt/dobot_anro_system/install/dobot_msgs/local/lib/python3.10/dist-packages",
+        "/opt/dobot_anro_system/install/dobot_driver/local/lib/python3.10/dist-packages",
+        "/opt/dobot_anro_system/install/dobot_control_panel/lib/python3.10/site-packages",
+        "/opt/dobot_anro_system/install/dobot_bringup/lib/python3.10/site-packages",
+        "/opt/ros/humble/lib/python3.10/site-packages",
+        "/opt/ros/humble/local/lib/python3.10/dist-packages"
+    ],
+    "python.analysis.extraPaths": [
+        "/home/student/anro/install/pick/lib/python3.10/site-packages",
+        "/home/student/anro/install/lab3/lib/python3.10/site-packages",
+        "/home/student/anro/install/lab2/lib/python3.10/site-packages",
+        "/opt/anro_camera_ws/install/ros2_aruco_interfaces/local/lib/python3.10/dist-packages",
+        "/opt/anro_camera_ws/install/ros2_aruco/lib/python3.10/site-packages",
+        "/opt/anro_camera_ws/install/realsense2_camera_msgs/local/lib/python3.10/dist-packages",
+        "/opt/dobot_anro_system/install/dobot_state_updater/lib/python3.10/site-packages",
+        "/opt/dobot_anro_system/install/dobot_motion/lib/python3.10/site-packages",
+        "/opt/dobot_anro_system/install/dobot_homing/lib/python3.10/site-packages",
+        "/opt/dobot_anro_system/install/dobot_end_effector/lib/python3.10/site-packages",
+        "/opt/dobot_anro_system/install/dobot_diagnostics/lib/python3.10/site-packages",
+        "/opt/dobot_anro_system/install/dobot_msgs/local/lib/python3.10/dist-packages",
+        "/opt/dobot_anro_system/install/dobot_driver/local/lib/python3.10/dist-packages",
+        "/opt/dobot_anro_system/install/dobot_control_panel/lib/python3.10/site-packages",
+        "/opt/dobot_anro_system/install/dobot_bringup/lib/python3.10/site-packages",
+        "/opt/ros/humble/lib/python3.10/site-packages",
+        "/opt/ros/humble/local/lib/python3.10/dist-packages"
+    ]
+}
